@@ -124,7 +124,7 @@
 .countries {
   max-width: 1400px;
   padding: 15px;
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -308,6 +308,7 @@ padding: 15px;
 
 @media (min-width: 1366px) {
   .countries {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
 }
