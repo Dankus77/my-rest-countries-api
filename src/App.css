@@ -124,7 +124,7 @@
 .countries {
   max-width: 1400px;
   padding: 15px;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -281,6 +281,10 @@ padding: 15px;
 }
 
 @media (max-width: 720px) {
+  .countries {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .inputs {
     flex-direction: column;
     margin-bottom: 15px;
@@ -299,5 +303,11 @@ padding: 15px;
   .logo {
     flex: 0.5;
     font-size: 17px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .countries {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
