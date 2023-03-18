@@ -1,22 +1,43 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useParams, useNavigate } from 'react-router';
 
-const CountryDetails = ({darkMode, countries, refetch}) => {
+interface Country {
+  alpha3Code: string;
+  name: string;
+  flag: string;
+  nativeName: string;
+  population: number;
+  region: string;
+  subregion: string;
+  capital: string;
+  topLevelDomain: string;
+  currencies: { name: string }[];
+  languages: { name: string }[];
+  borders: string[];
+}
 
-const params = useParams();
-const navigate = useNavigate();
+interface Props {
+  darkMode: boolean;
+  countries: Country[];
+  refetch: () => void;
+}
 
-let name;
-let flagImg;
-let nativeName;
-let population;
-let region;
-let subregion;
-let capital;
-let topLevelDomain;
-let currencies = [];
-let languages = [];
-let borders = [];
+const CountryDetails: FC<Props> = ({ darkMode, countries, refetch }) => {
+  const params = useParams<{ countryCode: string }>();
+  const navigate = useNavigate();
+
+  let name = '';
+  let flagImg = '';
+  let nativeName = '';
+  let population = 0;
+  let region = '';
+  let subregion = '';
+  let capital = '';
+  let topLevelDomain = '';
+  let currencies: string[] = [];
+  let languages: string[] = [];
+  let borders: string[] = [];
+
 
 countries.forEach(country => {
     if(country.alpha3Code === params.countryCode) {

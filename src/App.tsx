@@ -3,97 +3,90 @@ import { useNavigate } from 'react-router-dom';
 import Header from './Header/Header';
 import './App.css';
 import Country from './Country/Country';
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import CountryDetails from './Country/CountryDetails';
 
+interface CountryData {
+  alpha3Code: string;
+  name: string;
+  capital: string;
+  population: number;
+  region: string;
+  flag: string;
+}
 
 function App() {
-const [darkMode, setDarkMode] = useState(false);
-const [countries, setCountries] = useState([]);
-const countriesInputRef = useRef();
-const regionRef = useRef();
-const navigate = useNavigate();
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [countries, setCountries] = useState<CountryData[]>([]);
+  const countriesInputRef = useRef<HTMLInputElement>(null);
+  const regionRef = useRef<HTMLSelectElement>(null);
+  const navigate = useNavigate();
 
-const noCountry = countries.status || countries.message;
+  const noCountry = countries.length === 0;
 
-const fetchData = async() => {
-  const response = await fetch("https://restcountries.com/v2/all");
-  const data = await response.json();
-
-  if(data.status === 404){
-    setCountries([]);
-    return;
-  }
-
-  setCountries(data);
-}
-
-useEffect(() => {
-  try{
-    fetchData()
-  }catch(error){
-    console.log(error);
-  }
-}, [])
-
-const showDetails = (code) => {
-  navigate(`/${code}`);
-}
-
-const searchCountries = () => {
-  const searchValue = countriesInputRef.current.value;
-
-  if(searchValue.trim()){
-    const fetchSearch = async() => {
-      const response = await fetch(`https://restcountries.com/v2/name/${searchValue}`);
-      const data = await response.json();
-
-      setCountries(data);
-    };
-
+  const fetchData = async () => {
     try {
-      fetchSearch();
-    }catch(error) {
-      console.log(error);
-    }
-
-  }else {
-    fetchData();
-  }
-}
-
-const selectRegion = () => {
-  const selectValue = regionRef.current.value;
-
-  if(selectValue.trim()){
-    const fetchSelect = async() => {
-      const response = await fetch(`https://restcountries.com/v2/region/${selectValue}`);
+      const response = await fetch('https://restcountries.com/v2/all');
       const data = await response.json();
-
-      if(selectValue === "All"){
-        try{
-          fetchData()
-        }catch(error){
-          console.log(error);
-        }
+      if (data.status === 404) {
+        setCountries([]);
         return;
       }
-
       setCountries(data);
-    };
-
-    try{
-      fetchSelect()
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
 
-const switchMode = () => {
-  setDarkMode((prevState) => !prevState);
-}
-  return (
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const showDetails = (code: string) => {
+    navigate(`/${code}`);
+  };
+
+  const searchCountries = () => {
+    const searchValue = countriesInputRef.current?.value;
+    if (searchValue?.trim()) {
+      const fetchSearch = async () => {
+        try {
+          const response = await fetch(`https://restcountries.com/v2/name/${searchValue}`);
+          const data = await response.json();
+          setCountries(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchSearch();
+    } else {
+      fetchData();
+    }
+  };
+
+  const selectRegion = () => {
+    const selectValue = regionRef.current?.value;
+    if (selectValue?.trim()) {
+      const fetchSelect = async () => {
+        try {
+          const response = await fetch(`https://restcountries.com/v2/region/${selectValue}`);
+          const data = await response.json();
+          if (selectValue === 'All') {
+            fetchData();
+            return;
+          }
+          setCountries(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchSelect();
+    }
+  };
+
+  const switchMode = () => {
+    setDarkMode((prevState) => !prevState);
+  };  return (
     <div className={`app ${darkMode ? 'darkMode': ""}`}>
       <Header onClick={switchMode} darkMode={darkMode}/>
 

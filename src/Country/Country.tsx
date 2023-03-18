@@ -1,6 +1,20 @@
 import React from "react";
 
-const Country = ({darkMode, name, capital, population, region, flag, showDetails, code}) => {
+
+
+interface Props {
+    darkMode: boolean;
+    name: string;
+    capital: string;
+    population: number;
+    region: string;
+    flag: string;
+    showDetails: (code: string) => void;
+    code: string;
+    }
+
+
+const Country:React.FC<Props> = ({darkMode, name, capital, population, region, flag, showDetails, code}) => {
 
 const showDetailsHandler = () => {
     showDetails(code);
