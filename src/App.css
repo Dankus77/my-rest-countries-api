@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
 :root {
   --dark-mode-elements: hsl(209, 23%, 22%);
   --dark-mode-bg: hsl(207, 26%, 17%);
@@ -8,6 +10,7 @@
 }
 
 .app {
+  font-family: "Nunito Sans", sans-serif;
   background-color: var(--light-mode-bg);
   min-height: 100vh;
   height: 100%;
@@ -31,7 +34,7 @@
 }
 
 .header.darkMode {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
@@ -70,7 +73,7 @@
 }
 
 .search-input.darkMode {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
@@ -82,7 +85,7 @@
 }
 
 .search-input.darkMode input {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
@@ -93,6 +96,7 @@
   width: 300px;
   padding: 5px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .select-region select {
@@ -101,10 +105,11 @@
   background-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .select-region.darkMode {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
@@ -113,7 +118,7 @@
 }
 
 .select-region.darkMode option {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
@@ -141,7 +146,7 @@
 }
 
 .country.darkMode {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
@@ -186,6 +191,7 @@ padding: 15px;
 .back {
   background-color: var(--light-mode-bg);
   border: 0;
+  border-radius: 4px;
   outline: 0;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   margin-bottom: 25px;
@@ -200,7 +206,7 @@ padding: 15px;
 }
 
 .back.darkMode {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
@@ -252,6 +258,7 @@ padding: 15px;
 
 .border-country {
   padding: 5px 10px;
+  border-radius: 3px;
   background-color: var(--light-mode-bg);
   display: inline-block;
   margin: 10px;
@@ -260,7 +267,7 @@ padding: 15px;
 }
 
 .border-country.darkMode {
-  background-color: var(--dark-mode-bg);
+  background-color: var(--dark-mode-elements);
   color: var(--light-mode-elements);
 }
 
