@@ -77,7 +77,7 @@ function App() {
         try {
           const response = await fetch(`https://restcountries.com/v2/region/${selectValue}`);
           const data = await response.json();
-          if (selectValue === 'All') {
+          if (selectValue === 'Filter by Region') {
             fetchData();
             return;
           }
@@ -106,7 +106,7 @@ function App() {
           </div>
           <div className={`select-region ${darkMode ? 'darkMode': ""}`}>
 <select ref={regionRef} onChange={selectRegion}>
-  <option>All</option>
+  <option>Filter by Region</option>
   <option>Africa</option>
   <option>Americas</option>
   <option>Asia</option>
