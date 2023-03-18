@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({onClick, darkMode}) => {
     
     return (
         <div>
@@ -18,7 +18,7 @@ const Header = () => {
 </div>
 </div>
     )
-    
+
 }
 
 export default Header;
