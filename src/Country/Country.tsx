@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-interface Props {
+interface Args {
     darkMode: boolean;
     name: string;
     capital: string;
@@ -14,7 +14,7 @@ interface Props {
     }
 
 
-const Country:React.FC<Props> = ({darkMode, name, capital, population, region, flag, showDetails, code}) => {
+const Country:React.FC<Args> = ({darkMode, name, capital, population, region, flag, showDetails, code}) => {
 
 const showDetailsHandler = () => {
     showDetails(code);
