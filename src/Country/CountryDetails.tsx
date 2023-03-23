@@ -73,8 +73,8 @@ return (
     <div className='country-details'>
 <button className={`back ${darkMode ? 'darkMode': ""}`} onClick={goBack}>
 <i className="fa fa-arrow-left" aria-hidden="true">
-Back
 </i>
+Back
 </button>
 
 <div className='country-details-body'>

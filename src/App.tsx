@@ -95,6 +95,7 @@ function App() {
         <div className='inputs'>
           <div className={`search-input ${darkMode ? 'darkMode': ""}`}>
 <input type="text" placeholder='Search for a country...' ref={countriesInputRef} onChange={searchCountries} />
+<i className="fa fa-search" aria-hidden="true"></i>
           </div>
           <div className={`select-region ${darkMode ? 'darkMode': ""}`}>
 <select ref={regionRef} onChange={selectRegion}>

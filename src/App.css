@@ -77,7 +77,14 @@
   color: var(--light-mode-elements);
 }
 
+.fa-search {
+  position: relative;
+  right: 230px;
+}
+
 .search-input input {
+  position: relative;
+  left: 20px;
   border: 0;
   background-color: transparent;
   outline: none;
@@ -195,6 +202,7 @@ padding: 15px;
 }
 
 .back {
+  font-family: "Nunito Sans", sans-serif;
   background-color: var(--light-mode-bg);
   border: 0;
   border-radius: 4px;
@@ -324,6 +332,11 @@ padding: 15px;
     padding: 15px 60px;
   }
 
+  .fa-search {
+    position: relative;
+    right: 300px;
+  }
+
   .countries {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -336,8 +349,8 @@ padding: 15px;
   }
 
   .search-input input {
-    position: relative;
-    right: 50px;
+    position: inherit;
+    left: -40px;
   }
 
   .select-region {
