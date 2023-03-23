@@ -16,13 +16,13 @@ interface Country {
   borders: string[];
 }
 
-interface Props {
+interface Detail {
   darkMode: boolean;
   countries: Country[];
   refetch: () => void;
 }
 
-const CountryDetails: FC<Props> = ({ darkMode, countries, refetch }) => {
+const CountryDetails: FC<Detail> = ({ darkMode, countries, refetch }) => {
   const params = useParams<{ countryCode: string }>();
   const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ return (
     <div className='country-details'>
 <button className={`back ${darkMode ? 'darkMode': ""}`} onClick={goBack}>
 <i className="fa fa-arrow-left" aria-hidden="true">
-Go Back
+Back
 </i>
 </button>
 

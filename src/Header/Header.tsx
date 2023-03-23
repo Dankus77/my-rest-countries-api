@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 
-interface HeaderProps {
+interface HeaderArgs {
   onClick: () => void;
   darkMode: boolean;
 }
 
-const Header: FC<HeaderProps> = ({ onClick, darkMode }) => {
+const Header: FC<HeaderArgs> = ({ onClick, darkMode }) => {
   return (
     <div>
       <div className={`header ${darkMode ? 'darkMode': ''}`}>

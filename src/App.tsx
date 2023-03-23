@@ -24,6 +24,7 @@ interface CountryData {
 function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [countries, setCountries] = useState<CountryData[]>([]);
+  const [allCountries, setAllCountries] = useState<CountryData[]>([]);
   const countriesInputRef = useRef<HTMLInputElement>(null);
   const regionRef = useRef<HTMLSelectElement>(null);
   const navigate = useNavigate();
@@ -39,10 +40,12 @@ function App() {
         return;
       }
       setCountries(data);
+      setAllCountries(data); // Store all the countries in a variable
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   useEffect(() => {
     fetchData();
@@ -55,44 +58,33 @@ function App() {
   const searchCountries = () => {
     const searchValue = countriesInputRef.current?.value;
     if (searchValue?.trim()) {
-      const fetchSearch = async () => {
-        try {
-          const response = await fetch(`https://restcountries.com/v2/name/${searchValue}`);
-          const data = await response.json();
-          setCountries(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchSearch();
+      const filteredCountries = allCountries.filter((country) =>
+        country.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setCountries(filteredCountries);
     } else {
-      fetchData();
+      setCountries(allCountries);
     }
   };
+  
 
   const selectRegion = () => {
     const selectValue = regionRef.current?.value;
     if (selectValue?.trim()) {
-      const fetchSelect = async () => {
-        try {
-          const response = await fetch(`https://restcountries.com/v2/region/${selectValue}`);
-          const data = await response.json();
-          if (selectValue === 'Filter by Region') {
-            fetchData();
-            return;
-          }
-          setCountries(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchSelect();
+      if (selectValue === 'Filter by Region') {
+        setCountries(allCountries);
+      } else {
+        const filteredCountries = allCountries.filter((country) => country.region === selectValue);
+        setCountries(filteredCountries);
+      }
     }
   };
-
+  
   const switchMode = () => {
     setDarkMode((prevState) => !prevState);
-  };  return (
+  };  
+  
+  return (
     <div className={`app ${darkMode ? 'darkMode': ""}`}>
       <Header onClick={switchMode} darkMode={darkMode}/>
 
