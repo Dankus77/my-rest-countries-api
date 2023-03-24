@@ -1,5 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
+import Country from './Country';
+import countryList from '../countryList';
+
 
 interface Country {
   alpha3Code: string;
@@ -22,9 +25,12 @@ interface Detail {
   refetch: () => void;
 }
 
+console.log(countryList[0]);
+
 const CountryDetails: FC<Detail> = ({ darkMode, countries, refetch }) => {
   const params = useParams<{ countryCode: string }>();
   const navigate = useNavigate();
+
 
   let name = '';
   let flagImg = '';
@@ -36,7 +42,7 @@ const CountryDetails: FC<Detail> = ({ darkMode, countries, refetch }) => {
   let topLevelDomain = '';
   let currencies: string[] = [];
   let languages: string[] = [];
-  let borders: string[] = [];
+  let borderCountries: string[] = [];
 
 
 countries.forEach(country => {
@@ -59,7 +65,13 @@ countries.forEach(country => {
         })
 
         country.borders?.forEach(border => {
-            borders.push(border)
+            countryList.forEach(list =>{
+               if(border === list.code){
+                borderCountries.push(list.name)
+               }   
+            })
+            
+           // borders.push(border)
         })
     }
 })
@@ -154,16 +166,22 @@ Back
 </div>
 
 Border Countries:
-{borders.length ? (
-    borders.map((border, index) => (
+{borderCountries.length ? (
+    borderCountries.map((countryName, index) => (
         <div className={`border-country ${darkMode ? 'darkMode': ""}`}
         key={index}
         onClick={() => {
+            let borderCode;
             refetch();
-            navigate(`/${border}`)
+            countryList.forEach((list,index) => {
+            if(list.name === countryName){
+                borderCode = list.code;
+            }
+            })
+            navigate(`/${borderCode}`)
         }}
         >
-            {border}
+            {countryName}
         </div>
     ))
 ) : (
