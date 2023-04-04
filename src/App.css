@@ -22,7 +22,7 @@
 }
 
 .app-body {
-  margin: 15px auto 0;
+  margin: 20px auto 0;
   padding: 15px;
   max-width: 1400px;
 }
@@ -130,6 +130,10 @@
   color: var(--light-mode-elements);
 }
 
+.search-input input::placeholder {
+  font-size: 12px;
+}
+
 .search-input.darkMode input::placeholder {
   color: var(--light-mode-elements);
 }
@@ -164,6 +168,8 @@
 }
 
 .country .flag-container img {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -328,6 +334,13 @@ padding: 15px;
 }
 
 @media (min-width: 1366px) {
+  .search-input input::placeholder {
+    font-size: 14px;
+  }
+  .country-details .right-info {
+    position: relative;
+    bottom: 38px;
+  }
   .header {
     padding: 15px 60px;
   }
