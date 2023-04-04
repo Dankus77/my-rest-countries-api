@@ -113,11 +113,12 @@ Back
     <p>Sub-region:{" "}
     <span className={`values ${darkMode ? 'darkMode': ""}`}>{subregion}</span>
     </p>
-</div>
-<div className='right-info'>
-<p>Capital:{" "}
+
+    <p>Capital:{" "}
     <span className={`values ${darkMode ? 'darkMode': ""}`}>{capital}</span>
     </p>
+</div>
+<div className='right-info'>
 
     <p>Top-level Domain:{" "}
     <span className={`values ${darkMode ? 'darkMode': ""}`}>{topLevelDomain}</span>
